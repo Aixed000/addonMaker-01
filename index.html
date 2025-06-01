@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(20px); }
+  }
+  
+    body {
+      background-color: #000033;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    
+    h1, h2{
+      color: #FFFAFA;
+    }
+    
+    p {
+      color: #FFFAFA;
+    }
+    
+    input, select, button {
+      font-size: 16px;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    
+    button {
+      background-color: #FAF0E6;
+      color: black;
+      border: none;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: #FAF0E6;
+    }
+    
+    #toast {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #E6E6FA;
+      color: black;
+      padding: 10px 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      gap: 0px;
+    }
+
+  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate manifest.json</title>
+</head>
+<body>
+  
+  <div id="toast">
+  save!
+  </div>
+
+  <div class="container">
+    <h1>Generate manifest</h1>
+    <h2>base data ></h2>
+    <p>version :</p><br>
+    <input type="number" id="vOne" placeholder="0"><br>
+    <input type="number" id="vTwo" placeholder="0"><br>
+    <input type="number" id="vThree" placeholder="0"><br><br>
+
+    <p>version minecraft:</p>
+    <select id="version"></select><br><br>
+    <button onclick="save()">Save </button><br><br>
+    <p>behavior data:</p>
+      <input type="text" id="nameB" placeholder="name"><br><br>
+      <input type="text" id="descriptionB" placeholder="description"><br><br>
+    <p>scripts:</p>
+    <input type="text" id="entryScript" placeholder="entry script to?"><br><br>
+    <p>server version:</p>
+      <select id="verModules-server">
+    <option value="1.0.0">1.0.0(1.16.0+)</option>
+    <option value="1.1.0">1.1.0(1.17.0+)</option>
+    <option value="1.2.0">1.2.0(1.18.0+)</option>
+    <option value="1.3.0">1.3.0</option>
+    <option value="1.4.0">1.4.0(1.20.0+)</option>
+    <option value="1.5.0">1.5.0(1.21.0+)</option>
+    <option value="1.6.0">1.6.0</option>
+    <option value="1.7.0">1.7.0</option>
+    <option value="1.8.0">1.8.0</option>
+    <option value="1.9.0">1.9.0</option>
+    <option value="1.10.0">1.10.0</option>
+    <option value="1.11.0">1.11.0</option>
+    <option value="1.12.0">1.12.0</option>
+    <option value="1.13.0">1.13.0</option>
+    <option value="1.14.0">1.14.0</option>
+    <option value="1.15.0">1.15.0</option>
+    <option value="1.16.0">1.16.0</option>
+    <option value="1.17.0">1.17.0</option>
+    <option value="1.18.0">1.18.0</option>
+    <option value="1.19.0" selected="">1.19.0</option>
+    <option value="2.0.0-beta">2.0.0-beta(1.21.70-beta)</option>
+    <option value="2.1.0-beta">2.1.0-beta(1.21.90-beta.26+)</option>
+    </select><br>
+    <p>server-ui version:</p>
+    <select id="verModules-serverUi">
+      <option value="1.0.0">1.0.0</option>
+      <option value="1.1.0">1.1.0</option>
+      <option value="1.2.0">1.2.0</option>
+      <option value="1.3.0" selected="">1.3.0</option>
+      <option value="2.0.0">2.0.0(1.21.90-beata.26+)</option>
+      <option value="2.1.0-beta">2.1.0-beta</option>
+    </select>
+    <button onclick="generateManifestBehavior()">Download behavior manifest</button><br><br>
+  </div>
+
+  <script>
+    
+    const mcpeV = fetch("mcpeVersion.json").then(x => x.text())
+   
+    mcpeV.then(x => console.log(x))
+    
+    const versions = [
+      {value: "1.21.80", label: "1.21.80"}
+      ]
+    
+    function generateUUID() {
+      return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+      );
+    }
+    
+    const select = document.getElementById("version");
+    versions.forEach(item => {
+      const option = document.createElement("option");
+      option.value = item.value;
+      option.textContent = item.label;
+      select.appendChild(option);
+    });
+    
+    let vOne
+    let vTwo
+    let vThree
+    
+    let minecraftVersion
+    
+    function save() {
+      const toast = document.getElementById("toast");
+      toast.style.display = "block";
+      toast.style.animation = "fadeIn 0.5s ease-out"
+      setTimeout(() => {
+        toast.style.animation = "fadeOut 0.5s forwards"
+        setTimeout(() => {
+          toast.style.display = "none";
+        }, 500)
+        
+      }, 3000);
+      
+      vOne = parseInt(document.getElementById("vOne").value) || 0;
+      vTwo = parseInt(document.getElementById("vTwo").value) || 0;
+      vThree = parseInt(document.getElementById("vThree").value) || 0;
+      
+      minecraftVersion = JSON.parse(document.getElementById("version").value) || JSON.parse("[1,21,80]");
+    }
+    
+    function generateManifestBehavior() {
+      save()
+      const nameManifest = document.getElementById("nameB").value;
+      const desSctipManifest = document.getElementById("descriptionB").value;
+      
+      let entryScript = document.getElementById("entryScript").value || "main.js";
+      entryScript = entryScript.endsWith(".js") ? "scripts/"+entryScript : "scripts/"+entryScript + ".js";
+      const serverUiVersion = document.getElementById("verModules-serverUi").value;
+      const serverVersion = document.getElementById("verModules-server").value;
+      const dependencieUuid = generateUUID();
+      const manifest = {
+        format_version: 2,
+        header: {
+          name: nameManifest,
+          description: desSctipManifest,
+          min_engine_version: minecraftVersion,
+          version: [vOne, vTwo, vThree],
+          uuid: generateUUID()
+        },
+        modules: [
+          {
+            description: "Behavior",
+            type: "data",
+            version: [vOne, vTwo, vThree],
+            uuid: generateUUID()
+          },
+          {
+            type: "script",
+            entry: entryScript,
+            version: [vOne, vTwo, vThree],
+            uuid: generateUUID()
+          }
+        ],
+        dependencies: [
+          {
+            uuid: dependencieUuid,
+            version: [vOne, vTwo, vThree]
+          },
+          {
+            module_name: "@minecraft/server",
+            version: serverVersion
+          },
+          {
+            module_name: "@minecraft/server-ui",
+            version: serverUiVersion
+          }
+        ]
+      };
+
+      const blob = new Blob([JSON.stringify(manifest, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "manifest.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
