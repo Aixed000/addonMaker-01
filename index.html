@@ -132,16 +132,15 @@
 
   <script>
     
-    function loadVersion() {
-      return fetch("mcpeVersion.json").then(x => x.json())
-    }
-    
-    const select = document.getElementById("version");
-    loadVersion().then(item => {
-      const option = document.createElement("option");
-      option.value = item.value;
-      option.textContent = item.label;
-      select.appendChild(option);
+    fetch("mcpeVersion.json")
+      .then(res => res.json())
+      .then(data => {
+         data.forEach(item => {
+        const option = document.createElement("option");
+        option.value = item.value;
+        option.textContent = item.label;
+        document.getElementById("version").appendChild(option);
+      });
     });
     
     function generateUUID() {
