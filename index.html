@@ -132,7 +132,7 @@
 
   <script>
     
-    const mcpeV = fetch("mcpeVersion.json").then(x => x.text())
+    const mcpeV = fetch("mcpeVersion.json").then(x => x.json())
    
     mcpeV.then(x => alert(x))
     
