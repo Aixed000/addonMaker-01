@@ -45,10 +45,11 @@ body {
         flex-direction: column;
         
         img {
-          display: block;
-          margin: 0 auto;
-          height: 128px;
-          width: 128px;
+            background-color: #fff;
+            border-radius: 15px;
+            width: 128px;
+            height: 128px;
+            margin: 0 auto;
         }
         
         h3 {
