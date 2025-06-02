@@ -45,8 +45,10 @@ body {
         flex-direction: column;
         
         img {
+          display: block;
+          margin: 0 auto;
           height: 128px;
-          width: 64px;
+          width: 128px;
         }
         
         h3 {
