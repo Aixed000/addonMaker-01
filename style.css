@@ -44,6 +44,11 @@ body {
         justify-content: center;
         flex-direction: column;
         
+        img {
+          height: 128px;
+          width: 64px;
+        }
+        
         h3 {
             text-align: center;
             color: #fff;
