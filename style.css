@@ -5,11 +5,11 @@
 }
 
 body {
-    background-color: #696969;
+    background-color: #090c0f;
 }
 
 .top-container {
-    background-color: #212121;
+    background-color: #212730;
     height: 60px;
     width: 100vw;
     padding: 10px;
@@ -31,7 +31,7 @@ body {
 .main-menu {
     padding: 10px;
     height: 960px;
-    background-color: #212121;
+    background-color: #212730;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
@@ -39,7 +39,7 @@ body {
         margin: 20px;
         border-radius: 20px;
         padding: 10px;
-        background-color: #424242;
+        background-color: #343b45;
         display: flex;
         justify-content: center;
         flex-direction: column;
@@ -59,14 +59,14 @@ body {
         }
         button {
             padding: 10px;
-            background-color: #2b2b2b;
+            background-color: #fff;
             border-style: none;
-            color: #fff;
+            color: #000;
             border-radius: 10px;
         }
         button:hover {
-            background-color: #a3a3a3;
-            color: #000;
+            background-color: gray;
+            color: #fff;
         }
     }
 }
