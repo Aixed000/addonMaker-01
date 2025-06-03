@@ -24,7 +24,7 @@ function loadData() {
                   selectVersionScriptServer.appendChild(option)
             })
             
-            data.scriptApi.server-ui.forEach(server-ui => {
+            data.scriptApi["server-ui"].forEach(server-ui => {
                   const option = document.createElement("option")
                   option.value = server-ui.version
                   option.textContent = server-ui.version
