@@ -29,7 +29,11 @@ body {
   
   p {
     color: #fff;
+    margin: 10px;
   }
+  #info {
+    font-size: 2px;
+    }
   
   .text_setting {
     color: #fff;

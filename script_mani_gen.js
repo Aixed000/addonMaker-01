@@ -4,6 +4,10 @@ function generateUUID() {
       )
 }
 
+setTimeout(() => {
+      document.getElementById("info").style.display = "none"
+}, 5000)
+
 function loadData() {
       fetch("data.json").then(r => r.json()).then(data => {
             const selectVersionMCPE = document.getElementById("type_version_minecraft")
