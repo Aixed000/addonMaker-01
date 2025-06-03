@@ -7,16 +7,27 @@ function generateUUID() {
 function loadData() {
       fetch("data.json").then(r => r.json()).then(data => {
             const selectVersionMCPE = document.getElementById("type_version_minecraft")
-            const selectVersionScript = document.getElementById("type_version_script_server")
+            const selectVersionScriptServer = document.getElementById("type_version_script_server")
+            const selectVersionScriptServerUi = document.getElementById("type_version_script_server-ui")
             
             data.minecraft.forEach(mcpe => {
                   const option = document.createElement("option")
                   option.value = JSON.stringify(mcpe.version)
                   option.textContent = `${mcpe.version[0]}.${mcpe.version[1]}.${mcpe.version[2]}`
                   selectVersionMCPE.appendChild(option)
-                  
             })
+            data.scriptApi.server.forEach(server => {
+                  const option = document.createElement("option")
+                  option.value = server.version
+                  option.textContent = server.version
+                  selectVersionScriptServer.appendChild(option)
       })
+            data.scriptApi.server-ui.forEach(server-ui => {
+                  const option = document.createElement("option")
+                  option.value = server-ui.version
+                  option.textContent = server-ui.version
+                  selectVersionScriptServerUi.appendChild(option)
+            })
 }
 
 loadData()
