@@ -11,8 +11,8 @@ function loadData() {
             
             data.minecraft.forEach(mcpe => {
                   const option = document.createElement("option")
-                  option.value = mcpe.version
-                  option.textContent = `${mcpe.version[0]}.${mcpe.version[1]}>.${mcpe.version[2]}`
+                  option.value = `${mcpe.version}`
+                  option.textContent = `${mcpe.version[0]}.${mcpe.version[1]}.${mcpe.version[2]}`
                   selectVersionMCPE.appendChild(option)
                   
             })
