@@ -28,6 +28,7 @@ function loadData() {
                   option.textContent = server-ui.version
                   selectVersionScriptServerUi.appendChild(option)
             })
+      }
 }
 
 loadData()
