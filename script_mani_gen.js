@@ -16,20 +16,23 @@ function loadData() {
                   option.textContent = `${mcpe.version[0]}.${mcpe.version[1]}.${mcpe.version[2]}`
                   selectVersionMCPE.appendChild(option)
             })
+            
             data.scriptApi.server.forEach(server => {
                   const option = document.createElement("option")
                   option.value = server.version
                   option.textContent = server.version
                   selectVersionScriptServer.appendChild(option)
-      })
+            })
+            
             data.scriptApi.server-ui.forEach(server-ui => {
                   const option = document.createElement("option")
                   option.value = server-ui.version
                   option.textContent = server-ui.version
                   selectVersionScriptServerUi.appendChild(option)
             })
+            
+            })
       }
-}
 
 loadData()
 
