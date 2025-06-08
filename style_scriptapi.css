@@ -19,7 +19,7 @@ body {
   }
 }
 
-.versions {
+.box {
   background-color: #212730;
   border-radius: 15px;
   padding: 10px;
@@ -35,7 +35,28 @@ body {
     }
   }
   
-  h3 {
+  .menu {
+    display: flex;
+    flex-direction: column;
+    
+    li {
+      list-style: none;
+      button {
+        width: 100%;
+        background-color: #fff;
+        border-radius: 15px;
+        border: none;
+        color: #000;
+      }
+      
+      button:active {
+        background-color: gray;
+        color: #fff;
+      }
+    }
+  }
+  
+  h4, h2 {
     color: #fff;
   }
 }

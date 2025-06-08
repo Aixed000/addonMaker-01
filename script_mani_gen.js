@@ -14,24 +14,24 @@ function loadData() {
             const selectVersionScriptServer = document.getElementById("type_version_script_server")
             const selectVersionScriptServerUi = document.getElementById("type_version_script_server-ui")
             
-            data.minecraft.forEach(mcpe => {
+            data.minecraft.version.forEach(ver => {
                   const option = document.createElement("option")
-                  option.value = JSON.stringify(mcpe.version)
-                  option.textContent = `${mcpe.version[0]}.${mcpe.version[1]}.${mcpe.version[2]}`
+                  option.value = JSON.stringify(ver)
+                  option.textContent = `${ver[0]}.${ver[1]}.${ver[2]}`
                   selectVersionMCPE.appendChild(option)
             })
             
-            data.scriptApi.server.forEach(server => {
+            data.scriptApi["server"].version.forEach(ver => {
                   const option = document.createElement("option")
-                  option.value = server.version
-                  option.textContent = server.version
+                  option.value = ver
+                  option.textContent = ver
                   selectVersionScriptServer.appendChild(option)
             })
             
-            data.scriptApi["server-ui"].forEach(serverUi => {
+            data.scriptApi["server-ui"].version.forEach(ver => {
                   const option = document.createElement("option")
-                  option.value = serverUi.version
-                  option.textContent = serverUi.version
+                  option.value = ver
+                  option.textContent = ver
                   selectVersionScriptServerUi.appendChild(option)
             })
             
