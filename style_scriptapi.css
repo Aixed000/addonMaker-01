@@ -29,6 +29,10 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    
+    p {
+      color: #fff;
+    }
   }
   
   h3 {
