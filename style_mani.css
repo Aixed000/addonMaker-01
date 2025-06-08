@@ -27,12 +27,27 @@ body {
   margin: 10px;
   border-radius: 15px;
   
+  .box_question {
+    display: flex;
+    justify-content: : center;
+    align-items: center;
+    p {
+      margin: 2px;
+    }
+    
+    img {
+      height: 8px;
+      width: 8px;
+      margin: 0 auto;
+    }
+  }
+  
   p {
     color: #fff;
     margin: 10px;
   }
   #info {
-    font-size: 10px;
+    font-size: 2px;
     }
   
   .text_setting {
