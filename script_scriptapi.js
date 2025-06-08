@@ -4,7 +4,15 @@ function loadData() {
             const div = document.getElementById("versionServerModules")
             const p = document.createElement("p")
             
-            p.textContent = server.version
+            p.textContent = "-"+server.version
+            div.appendChild(p)
+        })
+        
+        data.scriptApi["server-ui"].forEach(serverUi => {
+            const div = document.getElementById("versionServerUiModules")
+            const p = document.createElement("p")
+            
+            p.textContent = "-"+serverUi.version
             div.appendChild(p)
         })
     })
