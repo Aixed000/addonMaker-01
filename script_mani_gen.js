@@ -57,8 +57,8 @@ function generateManifest() {
       
       let entryScript = document.getElementById("script_entry").value || "main.js";
       entryScript = entryScript.endsWith(".js") ? "scripts/"+entryScript : "scripts/"+entryScript + ".js"
-      const serverUiVersion = document.getElementById("type_version_script_server").value || "1.19.0"
-      const serverVersion = document.getElementById("type_version_script_server-ui").value || "1.3.0"
+      const serverVersion = document.getElementById("type_version_script_server").value || "1.19.0"
+      const serverUiVersion = document.getElementById("type_version_script_server-ui").value || "1.3.0"
       
       const dependencieUuidBP = generateUUID()
       const dependencieUuidRP = generateUUID()
