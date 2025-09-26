@@ -9,7 +9,7 @@ setTimeout(() => {
 }, 5000)
 
 function loadData() {
-      fetch("data.json").then(r => r.json()).then(data => {
+      fetch("/data.json").then(r => r.json()).then(data => {
             const selectVersionMCPE = document.getElementById("type_version_minecraft")
             const selectVersionScriptServer = document.getElementById("type_version_script_server")
             const selectVersionScriptServerUi = document.getElementById("type_version_script_server-ui")
