@@ -30,7 +30,7 @@ body {
 
 .main-menu {
     padding: 10px;
-    height: 960px;
+    height: calc(100vh - 70px);
     background-color: #212730;
     display: flex;
     justify-content: flex-start;
