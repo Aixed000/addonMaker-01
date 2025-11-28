@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  
+  <link rel="stylesheet" href="css/style.css">
+  <script src="script/script.js"></script>
+</head>
+<body>
+  
+  <div class="topbar">
+    <button onclick="slideSidebar()">☰</button>
+    <h1>Add-on Creator</h1>
+  </div>
+  
+  <div class="main" id="main">
+    <div class="main-topbar" id="main-topbar">
+      <button id="home" onclick="showPage('home')">Home</button>
+      <button id="mani" onclick="showPage('manigen')">GEN manifest</button>
+      <button id="ts" onclick="showPage('comts')">Com ts</button>
+    </div>
+    <div class="main-middlebar" id="main-middlebar">
+    </div>
+  </div>
+  
+  <div class="blurSidebar" id="blurSidebar"></div>
+  <div class="sidebar" id="sidebar">
+    <div class="topSb">
+      <a>Menu</a>
+      <button onclick="slideSidebar()">✖</button>
+    </div>
+    
+    <div class="choice">
+      <button onclick="body.classList.toggle('dark')">Change theme</button>
+    </div>
+  </d>
+</body>
+</html>
