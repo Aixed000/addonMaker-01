@@ -55,6 +55,7 @@ function showPage(page) {
           <div class="choices" id="pack"></div>
         </div>
         <h4>ServerAPI version</h4>
+        <a>The API version matches the latest version of Minecraft, but it may vary depending on the game you're using. (Last updated on 29/11/2025)</a>
         <div class="menu-choice">
           <button onclick="loadChoices('server_ui_version')" class="btn-open-ch" id="btn_server_ui_version">Server UI +</button>
           <div class="choices" id="server_ui_version"></div>
