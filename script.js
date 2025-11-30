@@ -27,7 +27,7 @@ function showPage(page) {
       <a>You can create and customize your own add-ons quickly and conveniently. Please note that this website is still in beta, so some features may not be available yet, and there may be some bugs. We apologize for any inconvenience.</a>
     `;
   } else if (page === 'manigen') {
-    document.getElementById('home').style.background = "var(---bg)"
+    document.getElementById('home').style.background = "var(--bg)"
     document.getElementById('mani').style.background = "var(--card-bg)"
     document.getElementById('ts').style.background = "var(--bg)"
     content.innerHTML = `
@@ -239,7 +239,7 @@ function downloadManifest() {
       ]
     }
 
-  if (maniType === 'Behavior') {
+  if (maniType === 'Behaviour') {
     const blob = new Blob([JSON.stringify(manifestBP, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
   
@@ -263,18 +263,20 @@ function downloadManifest() {
     const blob = new Blob([JSON.stringify(manifestBP, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const blob2 = new Blob([JSON.stringify(manifestRP, null, 2)], { type: "application/json" });
-    const url2 = URL.createObjectURL(blob);
+    const url2 = URL.createObjectURL(blob2);
   
     const a = document.createElement("a");
     a.href = url;
     a.download = "manifest(BP).json";
     a.click();
     const a2 = document.createElement("a");
-    a2.href = url;
+    a2.href = url2;
     a2.download = "manifest(RP).json";
     a2.click();
     
     URL.revokeObjectURL(url);
     URL.revokeObjectURL(url2);
+  } else {
+    alert("Select u Type")
   }
 }
