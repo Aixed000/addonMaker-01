@@ -49,11 +49,6 @@ function showPage(page) {
           <button onclick="loadChoices('minecraft_version')" class="btn-open-ch" id="btn_minecraft_version">Versions +</button>
           <div class="choices" id="minecraft_version"></div>
         </div>
-        <h4>Behaviour/Resource</h4>
-        <div class="menu-choice">
-          <button onclick="loadChoices('pack')" class="btn-open-ch" id="btn_pack">Type +</button>
-          <div class="choices" id="pack"></div>
-        </div>
         <h4>ServerAPI version</h4>
         <a>The API version matches the latest version of Minecraft, but it may vary depending on the game you're using. (Last updated on 29/11/2025)</a>
         <div class="menu-choice">
@@ -65,7 +60,8 @@ function showPage(page) {
           <div class="choices" id="server_version"></div>
         </div>
         
-        <button onclick="downloadManifest()" class="btn_download">Downdload</button>
+        <button onclick="downloadManifest('bp')" class="btn_download">Downdload BP</button>
+        <button onclick="downloadManifest('rp')" class="btn_download">Downdload RP</button>
       </div>
     `;
   } else if (page === 'comts') {
@@ -83,11 +79,11 @@ window.addEventListener('DOMContentLoaded', () => {
 })
 
 let jsonData = null;
+
 const selectFunc = {
   "minecraft_version": select_minecraft_version,
   "server_version": select_server_version,
-  "server_ui_version": select_server_ui_version,
-  "pack": select_pack
+  "server_ui_version": select_server_ui_version
 }
 
 
@@ -135,7 +131,6 @@ let maniDes = 'null'
 let maniSiptEntry = 'index.js'
 let maniAdnver = [0, 0, 1]
 let maniMcVersion = [1, 20, 0]
-let maniType = 'Behavior'
 let maniSver = '1.0.0'
 let maniSUIver = '1.0.0'
 
@@ -152,17 +147,13 @@ function select_server_ui_version(v) {
   maniSUIver = v
 }
 
-function select_pack(t) {
-  maniType = t
-}
-
 function generateUUID() {
       return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
       )
 }
 
-function downloadManifest() {
+function downloadManifest(type) {
   
   maniName = document.getElementById("mani_name").value
   maniDes = document.getElementById("mani_des").value
@@ -238,8 +229,8 @@ function downloadManifest() {
         }
       ]
     }
-
-  if (maniType === 'Behaviour') {
+    
+  if (type === 'bp') {
     const blob = new Blob([JSON.stringify(manifestBP, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
   
@@ -249,7 +240,7 @@ function downloadManifest() {
     a.click();
   
     URL.revokeObjectURL(url);
-  } else if (maniType === "Resource") {
+  } else if (type === "rp") {
     const blob = new Blob([JSON.stringify(manifestRP, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
   
@@ -259,24 +250,5 @@ function downloadManifest() {
     a.click();
     
     URL.revokeObjectURL(url);
-  } else if (maniType === "Behaviour/Resource") {
-    const blob = new Blob([JSON.stringify(manifestBP, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const blob2 = new Blob([JSON.stringify(manifestRP, null, 2)], { type: "application/json" });
-    const url2 = URL.createObjectURL(blob2);
-  
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "manifest(BP).json";
-    a.click();
-    const a2 = document.createElement("a");
-    a2.href = url2;
-    a2.download = "manifest(RP).json";
-    a2.click();
-    
-    URL.revokeObjectURL(url);
-    URL.revokeObjectURL(url2);
-  } else {
-    alert("Select u Type")
   }
 }
